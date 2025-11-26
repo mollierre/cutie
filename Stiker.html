@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Halaman Stiker</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #fff0f5;
+    display: flex;
+    flex-direction: column;   /* supaya video dan tombol ada di tengah */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  /* VIDEO DI TENGAH, TIDAK FULLSCREEN */
+  .sticker-video {
+    width: 300px;
+    border-radius: 12px;
+  }
+
+  /* TOMBOL MUSIK */
+  .btn-music {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #ff4d88;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .btn-music:hover {
+    background: #ff1a66;
+  }
+
+  a {
+    position: absolute;
+    bottom: 20px;
+    font-size: 20px;
+    color: #ff4d88;
+    text-decoration: none;
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- VIDEO STIKER DI TENGAH -->
+  <video class="sticker-video" autoplay loop muted>
+    <source src="Unyu.mp4" type="video/mp4">
+  </video>
+
+  <!-- TOMBOL MUSIK -->
+  <button class="btn-music" id="musicBtn">▶ Play Music</button>
+
+  <!-- BACK -->
+  <a href="index.html">← Kembali</a>
+
+  <!-- AUDIO FILE -->
+  <audio id="bgMusic">
+    <source src="lagu.mpeg" type="audio/mpeg">
+  </audio>
+
+
+<script>
+  const btn = document.getElementById("musicBtn");
+  const music = document.getElementById("bgMusic");
+
+  btn.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      btn.innerText = "⏸ Pause Music";
+    } else {
+      music.pause();
+      btn.innerText = "▶ Play Music";
+    }
+  });
+</script>
+
+</body>
+</html>

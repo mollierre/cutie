@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Uji Coba</title>
+
+<style>
+  /* LAYER BACKGROUND */
+  #bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1.8s ease-in-out;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: "Comic Sans MS", Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wrapper {
+    text-align: center;
+    z-index: 2;
+    animation: fadeIn 1.5s ease-in-out;
+    padding: 0 20px; /* agar tulisan tidak mepet di HP */
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.7); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* RESPONSIVE STIKER */
+  .sticker {
+    width: 60vw;       /* 60% lebar layar */
+    max-width: 260px;  /* batas maksimum */
+    animation: bounce 1.4s infinite ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* RESPONSIVE TEXT */
+  h2 {
+    margin-top: 18px;
+    font-size: 8vw;      /* mengikuti lebar layar */
+    max-font-size: 36px;
+    color: #ff0000;
+    animation: fireGlow 1.4s infinite alternate;
+  }
+
+  @keyframes fireGlow {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+  }
+
+  .heart {
+    position: fixed;
+    top: -10px;
+    color: #ff5f9e;
+    animation: fall 4s linear infinite;
+    font-size: 22px;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- Background Layer -->
+  <div id="bg"></div>
+
+  <!-- Main Content -->
+  <div class="wrapper">
+    <img class="sticker" src="https://media.tenor.com/IqBzLaFJA2cAAAAi/cute.gif">
+    <h2>
+      <a href="stiker.html" style="text-decoration:none; color:inherit;">
+        Click here to cheer you up❤️
+      </a>
+    </h2>
+  </div>
+
+  <!-- Background Slideshow Script -->
+  <script>
+    const images = ["myimages.jpg", "IMy8cd.jpg", "LS9.jpg"];
+    let index = 0;
+    const bg = document.getElementById("bg");
+
+    function changeBackground() {
+      bg.style.opacity = 0;
+      setTimeout(() => {
+        bg.style.backgroundImage = `url('${images[index]}')`;
+        bg.style.opacity = 1;
+        index = (index + 1) % images.length;
+      }, 900);
+    }
+
+    changeBackground();
+    setInterval(changeBackground, 5000);
+  </script>
+
+  <!-- Heart Rain Script -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "🫶";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 10) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+    setInterval(createHeart, 350);
+  </script>
+
+</body>
+</html>
